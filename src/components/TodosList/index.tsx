@@ -3,7 +3,7 @@ import { TodoItem } from '../TodoItem';
 import { useContext } from 'react';
 import { TodosContext } from '@/context';
 import { v4 as uuidv4 } from 'uuid';
-import { TodoWrapper } from '../TodoWrapper';
+import { PaperWrapper } from '../PaperWrapper';
 import { useStyles } from './stylesHook';
 
 export const Todos = () => {
@@ -12,7 +12,7 @@ export const Todos = () => {
   const classNames = { root: classes.root, itemWrapper: classes.itemWrapper };
 
   return (
-    <TodoWrapper>
+    <PaperWrapper>
       <List classNames={classNames} listStyleType="none" spacing={10}>
         {initialTodos.map((item) => {
           const id = uuidv4();
@@ -26,6 +26,6 @@ export const Todos = () => {
           );
         })}
       </List>
-    </TodoWrapper>
+    </PaperWrapper>
   );
 };

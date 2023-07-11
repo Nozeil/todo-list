@@ -1,4 +1,4 @@
-import { Checkbox, List, TextInput } from '@mantine/core';
+import { Checkbox, List, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Label } from './Label';
 import { useStyles } from './stylesHook';
@@ -12,7 +12,7 @@ export const TodoItem = ({ initialValue, initialIsChecked }: TodoItemInitialStat
 
   const [value, setValue] = useState(initialValue);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.currentTarget.value;
     setValue(value);
   };
@@ -29,10 +29,11 @@ export const TodoItem = ({ initialValue, initialIsChecked }: TodoItemInitialStat
         label={
           <Label
             input={
-              <TextInput
+              <Textarea
                 value={value}
                 onChange={onChange}
                 size="lg"
+                autosize
                 variant="filled"
                 disabled={isChecked}
                 td={td}

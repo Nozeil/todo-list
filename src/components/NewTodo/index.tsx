@@ -1,5 +1,5 @@
 import { TextInput } from '@mantine/core';
-import { TodoWrapper } from '../TodoWrapper';
+import { PaperWrapper } from '../PaperWrapper';
 import { AddButton } from './buttons/Add';
 import { useState, type ChangeEvent, useContext, KeyboardEvent } from 'react';
 import { TodosContext } from '@/context';
@@ -33,7 +33,7 @@ export const NewTodo = () => {
   };
 
   return (
-    <TodoWrapper>
+    <PaperWrapper>
       <TextInput
         value={value}
         onKeyDown={onKeyDown}
@@ -43,6 +43,6 @@ export const NewTodo = () => {
         variant="filled"
         rightSection={<AddButton onClick={onClick} />}
       />
-    </TodoWrapper>
+    </PaperWrapper>
   );
 };
