@@ -8,8 +8,8 @@ function App() {
     <Container size="lg" my={20}>
       <Paper component={Container} size="md" mih={`calc(100vh - 40px)`}>
         <Stack spacing="lg">
-          <NewTodo />
           <TodosProvider>
+            <NewTodo />
             <Todos />
           </TodosProvider>
         </Stack>

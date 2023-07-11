@@ -1,4 +1,12 @@
 import { type TodoItemsInitialStates } from '@/models';
-import { createContext } from 'react';
+import { Dispatch, SetStateAction, createContext } from 'react';
 
-export const TodosContext = createContext<TodoItemsInitialStates>([]);
+interface TodosContext {
+  initialTodos: TodoItemsInitialStates;
+  setInitialTodos: Dispatch<SetStateAction<TodoItemsInitialStates>>;
+}
+
+export const TodosContext = createContext<TodosContext>({
+  initialTodos: [],
+  setInitialTodos: () => {},
+});

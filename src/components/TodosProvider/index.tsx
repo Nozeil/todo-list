@@ -1,9 +1,19 @@
 import { TodosContext } from '@/context';
+import { TodoItemsInitialStates } from '@/models';
 import { getTodos } from '@/services';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 export const TodosProvider = ({ children }: PropsWithChildren) => {
-  const initialTodos = getTodos();
+  const [initialTodos, setInitialTodos] = useState<TodoItemsInitialStates>([]);
 
-  return <TodosContext.Provider value={initialTodos}>{children}</TodosContext.Provider>;
+  useEffect(() => {
+    const todos = getTodos();
+    setInitialTodos(todos);
+  }, []);
+
+  return (
+    <TodosContext.Provider value={{ initialTodos, setInitialTodos }}>
+      {children}
+    </TodosContext.Provider>
+  );
 };
