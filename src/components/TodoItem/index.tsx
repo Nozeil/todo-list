@@ -1,15 +1,14 @@
-import { Checkbox, TextInput } from '@mantine/core';
+import { Checkbox, List, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Label } from './Label';
 import { useStyles } from './stylesHook';
 import type { TodoItemInitialState } from '@/types';
 import { useState, type ChangeEvent } from 'react';
-import { EditButton } from './Label/buttons/Edit';
 
 export const TodoItem = ({ initialValue, initialIsChecked }: TodoItemInitialState) => {
   const [isChecked, handlers] = useDisclosure(initialIsChecked);
   const { classes } = useStyles();
-  const classNames = { labelWrapper: classes.labelWrapper, body: classes.body };
+  const classNames = { root: classes.root, labelWrapper: classes.labelWrapper, body: classes.body };
 
   const [value, setValue] = useState(initialValue);
 
@@ -21,27 +20,29 @@ export const TodoItem = ({ initialValue, initialIsChecked }: TodoItemInitialStat
   const td = isChecked ? 'line-through' : 'none';
 
   return (
-    <Checkbox
-      size="md"
-      classNames={classNames}
-      checked={isChecked}
-      label={
-        <Label
-          input={
-            <TextInput
-              value={value}
-              onChange={onChange}
-              size="lg"
-              variant="filled"
-              disabled={isChecked}
-              rightSection={<EditButton />}
-              td={td}
-              sx={{ flexGrow: 1 }}
-            />
-          }
-        />
-      }
-      onChange={handlers.toggle}
-    />
+    <List.Item>
+      <Checkbox
+        w="100%"
+        size="md"
+        classNames={classNames}
+        checked={isChecked}
+        label={
+          <Label
+            input={
+              <TextInput
+                value={value}
+                onChange={onChange}
+                size="lg"
+                variant="filled"
+                disabled={isChecked}
+                td={td}
+                sx={{ flexGrow: 1 }}
+              />
+            }
+          />
+        }
+        onChange={handlers.toggle}
+      />
+    </List.Item>
   );
 };

@@ -39,7 +39,7 @@ export const NewTodo = () => {
         onKeyDown={onKeyDown}
         onChange={onChange}
         placeholder="Add task..."
-        size="lg"
+        size="xl"
         variant="filled"
         rightSection={<AddButton onClick={onClick} />}
       />

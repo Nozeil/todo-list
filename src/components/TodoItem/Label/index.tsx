@@ -8,7 +8,7 @@ interface Props {
 
 export const Label = ({ input }: Props) => {
   return (
-    <Group w="100%" spacing="sm">
+    <Group noWrap spacing="sm">
       {input}
       <DeleteButton />
     </Group>
