@@ -1,6 +1,7 @@
 import { Container, Paper, Stack } from '@mantine/core';
 import { Todos } from '@/components/TodosList';
 import { NewTodo } from './components/NewTodo';
+import { TodosProvider } from './components/TodosProvider';
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <Paper component={Container} size="md" mih={`calc(100vh - 40px)`}>
         <Stack spacing="lg">
           <NewTodo />
-          <Todos />
+          <TodosProvider>
+            <Todos />
+          </TodosProvider>
         </Stack>
       </Paper>
     </Container>
