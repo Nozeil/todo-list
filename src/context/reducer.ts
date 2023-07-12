@@ -12,9 +12,9 @@ export const todosReducer = (todos: TodosState, action: Action) => {
         const { id, initialValue, initialIsChecked } = action.payload;
         if (item.id === id) {
           const newItem = {
-            id: item.id,
-            initialValue: initialValue,
-            initialIsChecked: initialIsChecked,
+            id,
+            initialValue,
+            initialIsChecked,
           };
 
           return newItem;

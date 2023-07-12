@@ -1,12 +1,11 @@
-import { Checkbox, List, Textarea } from '@mantine/core';
+import { Checkbox, Group, List, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Label } from './Label';
 import { useStyles } from './stylesHook';
 import type { TodoItemState } from '@/types';
 import { useState, type ChangeEvent, useContext } from 'react';
 import { TodosDispatchContext } from '@/context';
 import { ActionTypes } from '@/constants';
-import { DeleteButton } from './Label/buttons/Delete';
+import { DeleteButton } from './buttons';
 
 export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) => {
   const [isChecked, handlers] = useDisclosure(initialIsChecked);
@@ -20,7 +19,7 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
   const checkboxOnChange = () => {
     dispatch({
       type: ActionTypes.UPDATE,
-      payload: { id, initialValue: value, initialIsChecked: isChecked },
+      payload: { id, initialValue: value, initialIsChecked: !isChecked },
     });
     handlers.toggle();
   };
@@ -30,12 +29,11 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
     setValue(value);
   };
 
-  const onBlur = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const currValue = e.currentTarget.value;
-    if (value !== currValue) {
+  const onBlur = () => {
+    if (initialValue !== value) {
       dispatch({
         type: ActionTypes.UPDATE,
-        payload: { id, initialValue: value, initialIsChecked },
+        payload: { id, initialValue: value, initialIsChecked: isChecked },
       });
     }
   };
@@ -55,7 +53,7 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
         classNames={classNames}
         checked={isChecked}
         label={
-          <Label>
+          <Group noWrap spacing="sm">
             <Textarea
               value={value}
               onChange={areaOnChange}
@@ -68,7 +66,7 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
               sx={{ flexGrow: 1 }}
             />
             <DeleteButton onClick={onClick} />
-          </Label>
+          </Group>
         }
         onChange={checkboxOnChange}
       />
