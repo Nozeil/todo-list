@@ -15,7 +15,13 @@ export const TodoItem = ({ label, id, initialIsChecked, initialValue }: Props) =
   const dispatch = useContext(TodosDispatchContext);
   const { classes } = useStyles();
 
-  const classNames = { root: classes.root, labelWrapper: classes.labelWrapper, body: classes.body };
+  const classNames = {
+    root: classes.root,
+    body: classes.body,
+    label: classes.label,
+    labelWrapper: classes.labelWrapper,
+    input: classes.input,
+  };
 
   const checkboxOnChange = () => {
     dispatch({
@@ -35,6 +41,7 @@ export const TodoItem = ({ label, id, initialIsChecked, initialValue }: Props) =
         checked={isChecked}
         label={label}
         onChange={checkboxOnChange}
+        onClick={(e) => console.log(e.target)}
       />
     </List.Item>
   );
