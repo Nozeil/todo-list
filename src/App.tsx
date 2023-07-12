@@ -1,5 +1,5 @@
 import { Container, Paper, Stack } from '@mantine/core';
-import { Todos } from '@/components/TodosList';
+import { Todos } from '@/components/Todos';
 import { NewTodo } from './components/NewTodo';
 import { TodosProvider } from './components/TodosProvider';
 

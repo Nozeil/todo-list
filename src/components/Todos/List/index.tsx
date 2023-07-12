@@ -1,19 +1,17 @@
-import { List } from '@mantine/core';
-import { TodoItem } from '../TodoItem';
-import { useContext } from 'react';
-import { TodosContext } from '@/context';
-import { PaperWrapper } from '../PaperWrapper';
+import type { TodosState } from '@/types';
 import { useStyles } from './stylesHook';
-import { setTodos } from '@/services';
-import useBeforeUnload from '@/hooks';
-import { Label } from './Label';
+import { TodoItem } from '@/components/TodoItem';
+import { List } from '@mantine/core';
+import { Label } from '../Label';
+import { PaperWrapper } from '@/components/PaperWrapper';
 
-export const Todos = () => {
-  const todos = useContext(TodosContext);
+interface Props {
+  todos: TodosState;
+}
+
+export const TodoList = ({ todos }: Props) => {
   const { classes } = useStyles();
   const classNames = { root: classes.root, itemWrapper: classes.itemWrapper };
-
-  useBeforeUnload(() => setTodos(todos));
 
   return (
     <PaperWrapper>

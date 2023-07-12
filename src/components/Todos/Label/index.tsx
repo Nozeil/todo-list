@@ -2,8 +2,8 @@ import { Group, Textarea } from '@mantine/core';
 import { ChangeEvent, useContext, useState } from 'react';
 import { TodosDispatchContext } from '@/context';
 import { ActionTypes } from '@/constants';
-import { DeleteButton } from '@/components/TodosList/Label/DeleteButton';
 import type { TodoItemState } from '@/types';
+import { DeleteButton } from './DeleteButton';
 
 export const Label = ({ id, initialValue, initialIsChecked }: TodoItemState) => {
   const [value, setValue] = useState(initialValue);
