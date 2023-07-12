@@ -30,6 +30,7 @@ export const TodoItem = ({ label, id, initialIsChecked, initialValue }: Props) =
       <Checkbox
         w="100%"
         size="md"
+        radius="lg"
         classNames={classNames}
         checked={isChecked}
         label={label}
