@@ -11,7 +11,7 @@ export type TodosState = TodoItemState[];
 export type Action =
   | {
       type: ActionTypes.ADD;
-      payload: TodoItemState;
+      payload: Omit<TodoItemState, 'initialIsChecked'>;
     }
   | {
       type: ActionTypes.UPDATE;

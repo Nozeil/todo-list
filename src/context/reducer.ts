@@ -2,14 +2,25 @@ import { ActionTypes } from '@/constants';
 import { Action, TodosState } from '@/types';
 
 export const todosReducer = (todos: TodosState, action: Action) => {
-  console.log(action.payload);
   switch (action.type) {
     case ActionTypes.ADD: {
-      console.log([...todos, action.payload]);
-      return [...todos, action.payload];
+      const { id, initialValue } = action.payload;
+      return [...todos, { id, initialValue, initialIsChecked: false }];
     }
     case ActionTypes.UPDATE: {
-      return todos;
+      return todos.map((item) => {
+        const { id, initialValue, initialIsChecked } = action.payload;
+        if (item.id === id) {
+          const newItem = {
+            id: item.id,
+            initialValue: initialValue,
+            initialIsChecked: initialIsChecked,
+          };
+
+          return newItem;
+        }
+        return item;
+      });
     }
     case ActionTypes.DELETE: {
       return todos;

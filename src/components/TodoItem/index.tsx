@@ -3,21 +3,41 @@ import { useDisclosure } from '@mantine/hooks';
 import { Label } from './Label';
 import { useStyles } from './stylesHook';
 import type { TodoItemState } from '@/types';
-import { useState, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent, useContext } from 'react';
+import { TodosDispatchContext } from '@/context';
+import { ActionTypes } from '@/constants';
 
 export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) => {
   const [isChecked, handlers] = useDisclosure(initialIsChecked);
-  const { classes } = useStyles();
-  const classNames = { root: classes.root, labelWrapper: classes.labelWrapper, body: classes.body };
-
   const [value, setValue] = useState(initialValue);
+  const dispatch = useContext(TodosDispatchContext);
+  const { classes } = useStyles();
 
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const classNames = { root: classes.root, labelWrapper: classes.labelWrapper, body: classes.body };
+  const td = isChecked ? 'line-through' : 'none';
+
+  const checkboxOnChange = () => {
+    dispatch({
+      type: ActionTypes.UPDATE,
+      payload: { id, initialValue: value, initialIsChecked: isChecked },
+    });
+    handlers.toggle();
+  };
+
+  const areaOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.currentTarget.value;
     setValue(value);
   };
 
-  const td = isChecked ? 'line-through' : 'none';
+  const onBlur = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const currValue = e.currentTarget.value;
+    if (value !== currValue) {
+      dispatch({
+        type: ActionTypes.UPDATE,
+        payload: { id, initialValue: value, initialIsChecked },
+      });
+    }
+  };
 
   return (
     <List.Item>
@@ -31,7 +51,8 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
             input={
               <Textarea
                 value={value}
-                onChange={onChange}
+                onChange={areaOnChange}
+                onBlur={onBlur}
                 size="lg"
                 autosize
                 variant="filled"
@@ -42,7 +63,7 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
             }
           />
         }
-        onChange={handlers.toggle}
+        onChange={checkboxOnChange}
       />
     </List.Item>
   );

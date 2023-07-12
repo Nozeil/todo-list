@@ -18,7 +18,7 @@ export const NewTodo = () => {
   const addTodo = () => {
     dispatch({
       type: ActionTypes.ADD,
-      payload: { id: uuidv4(), initialValue: value, initialIsChecked: false },
+      payload: { id: uuidv4(), initialValue: value },
     });
     setValue('');
   };
