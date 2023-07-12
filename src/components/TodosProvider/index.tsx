@@ -1,5 +1,5 @@
 import { TodosContext, TodosDispatchContext } from '@/context';
-import { todosReducer } from '@/context/reducer';
+import { todosReducer } from '@/context/reducers';
 import { getTodos } from '@/services';
 import type { Action, TodosState } from '@/types';
 import { PropsWithChildren, Reducer, useReducer } from 'react';

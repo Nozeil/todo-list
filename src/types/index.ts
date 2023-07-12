@@ -7,11 +7,12 @@ export interface TodoItemState {
 }
 
 export type TodosState = TodoItemState[];
+export type AddToDoPayload = Omit<TodoItemState, 'initialIsChecked'>;
 
 export type Action =
   | {
       type: ActionTypes.ADD;
-      payload: Omit<TodoItemState, 'initialIsChecked'>;
+      payload: AddToDoPayload;
     }
   | {
       type: ActionTypes.UPDATE;
