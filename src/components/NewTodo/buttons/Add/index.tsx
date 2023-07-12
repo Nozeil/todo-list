@@ -1,11 +1,8 @@
 import { ActionIcon } from '@mantine/core';
 import { IconSquareRoundedPlus } from '@tabler/icons-react';
+import { HTMLProps } from 'react';
 
-interface Props {
-  onClick?: () => void;
-}
-
-export const AddButton = ({ onClick }: Props) => {
+export const AddButton = ({ onClick }: HTMLProps<HTMLButtonElement>) => {
   return (
     <ActionIcon onClick={onClick}>
       <IconSquareRoundedPlus />

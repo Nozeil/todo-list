@@ -6,6 +6,7 @@ import type { TodoItemState } from '@/types';
 import { useState, type ChangeEvent, useContext } from 'react';
 import { TodosDispatchContext } from '@/context';
 import { ActionTypes } from '@/constants';
+import { DeleteButton } from './Label/buttons/Delete';
 
 export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) => {
   const [isChecked, handlers] = useDisclosure(initialIsChecked);
@@ -39,6 +40,13 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
     }
   };
 
+  const onClick = () => {
+    dispatch({
+      type: ActionTypes.DELETE,
+      payload: id,
+    });
+  };
+
   return (
     <List.Item>
       <Checkbox
@@ -47,21 +55,20 @@ export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) 
         classNames={classNames}
         checked={isChecked}
         label={
-          <Label
-            input={
-              <Textarea
-                value={value}
-                onChange={areaOnChange}
-                onBlur={onBlur}
-                size="lg"
-                autosize
-                variant="filled"
-                disabled={isChecked}
-                td={td}
-                sx={{ flexGrow: 1 }}
-              />
-            }
-          />
+          <Label>
+            <Textarea
+              value={value}
+              onChange={areaOnChange}
+              onBlur={onBlur}
+              size="lg"
+              autosize
+              variant="filled"
+              disabled={isChecked}
+              td={td}
+              sx={{ flexGrow: 1 }}
+            />
+            <DeleteButton onClick={onClick} />
+          </Label>
         }
         onChange={checkboxOnChange}
       />

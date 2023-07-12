@@ -23,7 +23,7 @@ export const todosReducer = (todos: TodosState, action: Action) => {
       });
     }
     case ActionTypes.DELETE: {
-      return todos;
+      return todos.filter((item) => item.id !== action.payload);
     }
     default: {
       throw Error('Unknown type');

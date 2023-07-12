@@ -19,5 +19,5 @@ export type Action =
     }
   | {
       type: ActionTypes.DELETE;
-      payload: TodoItemState;
+      payload: string;
     };
