@@ -4,6 +4,7 @@ import { TodosDispatchContext } from '@/context';
 import { ActionTypes } from '@/constants';
 import type { TodoItemState } from '@/types';
 import { DeleteButton } from './DeleteButton';
+import { KeyboardEvent } from 'react';
 
 export const Label = ({ id, initialValue, initialIsChecked }: TodoItemState) => {
   const [value, setValue] = useState(initialValue);
@@ -31,10 +32,18 @@ export const Label = ({ id, initialValue, initialIsChecked }: TodoItemState) => 
     });
   };
 
+  const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.currentTarget.blur();
+    }
+  };
+
   return (
     <Group noWrap spacing="sm">
       <Textarea
         value={value}
+        onKeyDown={onKeyDown}
         onChange={onChange}
         onBlur={onBlur}
         size="lg"
