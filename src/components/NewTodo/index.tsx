@@ -1,6 +1,6 @@
 import { TextInput } from '@mantine/core';
 import { PaperWrapper } from '../PaperWrapper';
-import { AddButton } from './buttons/Add';
+import { AddButton } from './AddButton';
 import { useState, type ChangeEvent, useContext, KeyboardEvent } from 'react';
 import { TodosDispatchContext } from '@/context';
 import { ActionTypes } from '@/constants';
