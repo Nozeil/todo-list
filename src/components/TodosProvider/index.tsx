@@ -1,19 +1,15 @@
-import { TodosContext } from '@/context';
-import { TodoItemsInitialStates } from '@/models';
+import { TodosContext, TodosDispatchContext } from '@/context';
+import { todosReducer } from '@/context/reducer';
 import { getTodos } from '@/services';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import type { Action, TodosState } from '@/types';
+import { PropsWithChildren, Reducer, useReducer } from 'react';
 
 export const TodosProvider = ({ children }: PropsWithChildren) => {
-  const [initialTodos, setInitialTodos] = useState<TodoItemsInitialStates>([]);
-
-  useEffect(() => {
-    const todos = getTodos();
-    setInitialTodos(todos);
-  }, []);
+  const [todos, dispatch] = useReducer<Reducer<TodosState, Action>>(todosReducer, getTodos());
 
   return (
-    <TodosContext.Provider value={{ initialTodos, setInitialTodos }}>
-      {children}
+    <TodosContext.Provider value={todos}>
+      <TodosDispatchContext.Provider value={dispatch}>{children}</TodosDispatchContext.Provider>
     </TodosContext.Provider>
   );
 };

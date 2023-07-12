@@ -1,12 +1,6 @@
-import { type TodoItemsInitialStates } from '@/models';
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { Dispatch, createContext } from 'react';
+import type { Action, TodosState } from '@/types';
 
-interface TodosContext {
-  initialTodos: TodoItemsInitialStates;
-  setInitialTodos: Dispatch<SetStateAction<TodoItemsInitialStates>>;
-}
+export const TodosContext = createContext<TodosState>([]);
 
-export const TodosContext = createContext<TodosContext>({
-  initialTodos: [],
-  setInitialTodos: () => {},
-});
+export const TodosDispatchContext = createContext<Dispatch<Action>>(() => {});

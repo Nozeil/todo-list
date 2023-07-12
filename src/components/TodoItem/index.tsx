@@ -2,10 +2,10 @@ import { Checkbox, List, Textarea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Label } from './Label';
 import { useStyles } from './stylesHook';
-import type { TodoItemInitialState } from '@/types';
+import type { TodoItemState } from '@/types';
 import { useState, type ChangeEvent } from 'react';
 
-export const TodoItem = ({ initialValue, initialIsChecked }: TodoItemInitialState) => {
+export const TodoItem = ({ id, initialIsChecked, initialValue }: TodoItemState) => {
   const [isChecked, handlers] = useDisclosure(initialIsChecked);
   const { classes } = useStyles();
   const classNames = { root: classes.root, labelWrapper: classes.labelWrapper, body: classes.body };

@@ -1,6 +1,4 @@
-import type { TodoItemInitialState } from '@/types';
+import type { TodosState } from '@/types';
 
-export type TodoItemsInitialStates = TodoItemInitialState[];
-
-export type todosGetter = () => TodoItemsInitialStates;
-export type todosSetter = (todos: TodoItemsInitialStates) => void;
+export type todosGetter = () => TodosState;
+export type todosSetter = (todos: TodosState) => void;
